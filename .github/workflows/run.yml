@@ -1,4 +1,4 @@
-name: Rubika Bot 24/7
+name: Rubika-Bot
 
 on:
   push:
@@ -8,5 +8,20 @@ on:
     - cron: '0 */5 * * *'
 
 jobs:
-  run-bot:
-    
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run Bot
+        run: timeout 17700s python bot.py || true
