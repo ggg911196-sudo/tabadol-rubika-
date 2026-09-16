@@ -1,0 +1,34 @@
+
+# اجرای ربات روی گوشی با Termux (رایگان)
+
+1. Termux رو از F-Droid نصب کن (نه گوگل پلی)
+   لینک: f-droid.org/packages/com.termux
+
+2. داخل Termux این دستورات رو بزن:
+
+pkg update && pkg upgrade -y
+pkg install python git -y
+pip install requests python-dotenv aiosqlite apscheduler
+
+3. فایل های ربات رو تو حافظه داخلی بریز: پوشه Download/tabadol-rubika
+
+4. برو تو پوشه:
+cd /storage/emulated/0/Download/tabadol-rubika
+یا
+cd ~/tabadol-rubika
+
+5. توکن رو ست کن:
+export RUBIKA_TOKEN="توکن_تو_اینجا"
+export OWNER_ID="آیدی_خودت"
+export EXCHANGE_CHANNELS="آیدی_کانال_تبادل"
+
+6. اجرا:
+python bot.py
+
+برای اینکه با بستن Termux خاموش نشه:
+pkg install termux-wake-lock
+termux-wake-lock
+و از اعلان Termux گزینه Acquire wakelock رو بزن
+
+برای اجرای همیشگی:
+nohup python bot.py &
